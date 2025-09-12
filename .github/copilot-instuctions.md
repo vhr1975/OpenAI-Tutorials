@@ -1,4 +1,3 @@
-Got it ✅ — I’ll rewrite these instructions so they’re **generalized for your 
 # 📂 GitHub Project Guidelines (for Portfolio Showcases)
 
 ## 🎯 Role & Context

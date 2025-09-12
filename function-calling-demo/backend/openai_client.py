@@ -1,3 +1,16 @@
+# =============================================================
+# Azure OpenAI Client (openai_client.py)
+# -------------------------------------------------------------
+# This file configures the Azure OpenAI client for the backend.
+# It loads credentials and endpoint info from environment variables
+# and provides a function to send chat requests and handle function calls.
+#
+# Key Concepts for Beginners:
+# - How to securely load API keys and endpoints
+# - How to use the AzureOpenAI client (SDK >=1.0.0)
+# - How to send chat requests with function definitions
+# - How to parse and return function call results
+# =============================================================
 
 
 

@@ -1,3 +1,21 @@
+# =============================================================
+# Function Calling Demo Backend (main.py)
+# -------------------------------------------------------------
+# This file is the entry point for the backend API.
+# It demonstrates how to use Azure OpenAI to call Python functions
+# from natural language using FastAPI.
+#
+# Key Concepts for Beginners:
+# - How user messages are received and processed
+# - How OpenAI/Azure suggests function calls
+# - How Python functions are dynamically invoked
+# - How to extend the backend with new functions
+# - How to use environment variables for secure API access
+#
+# Try sending a POST request to /chat with a message like:
+#   {"message": "What's the weather in Paris?", "user_id": "user123"}
+# and see how the backend responds!
+# =============================================================
 # FastAPI app entry point (stub)
 
 

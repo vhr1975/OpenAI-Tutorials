@@ -1,0 +1,5 @@
+# Top-level dependencies for OpenAI-Tutorials
+# Add shared packages here, e.g. openai, fastapi, streamlit, etc.
+openai
+fastapi
+streamlit

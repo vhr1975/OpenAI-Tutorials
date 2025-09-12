@@ -16,13 +16,6 @@
 #   {"message": "What's the weather in Paris?", "user_id": "user123"}
 # and see how the backend responds!
 # =============================================================
-# FastAPI app entry point (stub)
-
-
-
-# This is the main backend for the Function Calling Demo.
-# It shows how to use OpenAI's chat models to call Python functions from natural language.
-# Beginners: Follow the comments to see how user requests are turned into real backend actions!
 
 from fastapi import FastAPI, Request
 from pydantic import BaseModel

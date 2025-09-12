@@ -12,8 +12,6 @@
 # - How to parse and return function call results
 # =============================================================
 
-
-
 import os
 from dotenv import load_dotenv
 from openai import AzureOpenAI

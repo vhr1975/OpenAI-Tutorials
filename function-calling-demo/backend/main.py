@@ -23,9 +23,19 @@ from typing import Optional
 from functions import FUNCTIONS
 from openai_client import call_openai_api
 from utils import log_request, log_response, log_error
+from fastapi.middleware.cors import CORSMiddleware
 import json
 
 app = FastAPI()
+
+# Enable CORS for frontend integration
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # Frontend dev server
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # This model defines what a chat request looks like
 class ChatRequest(BaseModel):

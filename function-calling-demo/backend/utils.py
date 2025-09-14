@@ -11,5 +11,9 @@ def log_request(request):
 def log_response(response):
     logger.info(f"Response: {response}")
 
-def log_error(error):
-    logger.error(f"Error: {error}")
+ # Simple logging functions for unit tests
+def log_info(msg):
+    print(msg)
+
+def log_error(msg):
+    print(f"Error: {msg}")

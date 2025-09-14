@@ -98,6 +98,7 @@ def read_root():
 
 # This is the main endpoint for chat and function calling
 from fastapi import Body
+from fastapi import APIRouter
 
 # Add an OpenAPI example for the /chat endpoint to help developers in Swagger UI
 @app.post(
@@ -178,3 +179,7 @@ async def chat_endpoint(request: ChatRequest = Body(..., example={"message": "Wh
         # If anything goes wrong, log the error and return it
         log_error(str(e))
         return ChatResponse(response="", function_call=None, error=str(e))
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}

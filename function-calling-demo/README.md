@@ -45,7 +45,35 @@ This project is a full-stack, production-ready demo designed to inspire and empo
 - `frontend/` — React app with a modern UI for interacting with the backend and visualizing results
 
 ## Getting Started
-See the `backend/` and `frontend/` folders for setup instructions. Example productivity scripts and environment setup are included.
+
+### How to Run the Backend (FastAPI)
+1. Open a terminal and activate your Python environment.
+2. Install dependencies:
+	```sh
+	pip install -r backend/requirements.txt
+	```
+3. Start the FastAPI backend:
+	```sh
+	uvicorn backend.main:app --reload
+	```
+4. The API will be available at `http://localhost:8000`.
+
+### How to Run the Frontend (React)
+1. Open a terminal and navigate to the `frontend/` folder:
+	```sh
+	cd frontend
+	```
+2. Install dependencies:
+	```sh
+	npm install
+	```
+3. Start the React app:
+	```sh
+	npm start
+	```
+4. The frontend will be available at `http://localhost:3000`.
+
+Both apps should be running for full functionality.
 
 This project is designed to:
 - Inspire developers with practical, production-ready AI demos and sample apps

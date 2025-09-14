@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+openai-dev-ex.md
 
 # C extensions
 *.so

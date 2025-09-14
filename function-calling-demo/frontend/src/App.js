@@ -15,14 +15,16 @@ import './App.css';
 function App() {
   // State for user message and backend response
   const [message, setMessage] = useState('');
-  const [response, setResponse] = useState('');
+  const [response, setResponse] = useState(null);
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
   // Send message to backend
   const sendMessage = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setResponse('');
+    setResponse(null);
+    setError(null);
     try {
       const res = await fetch('http://localhost:8000/chat', {
         method: 'POST',
@@ -30,9 +32,20 @@ function App() {
         body: JSON.stringify({ message, user_id: 'user123' })
       });
       const data = await res.json();
-      setResponse(data.response || JSON.stringify(data.function_call));
+      // If backend returns error field, show it nicely
+      if (data.error) {
+        setError(data.error);
+        setResponse(null);
+      } else {
+        setError(null);
+        setResponse({
+          response: data.response,
+          function_call: data.function_call
+        });
+      }
     } catch (err) {
-      setResponse('Error: ' + err.message);
+      setError('Network error: ' + err.message);
+      setResponse(null);
     }
     setLoading(false);
   };
@@ -53,8 +66,23 @@ function App() {
         </button>
       </form>
       <div style={{ marginTop: 20 }}>
-        <strong>Response:</strong>
-        <pre style={{ background: '#f4f4f4', padding: 10 }}>{response}</pre>
+        {error ? (
+          <div style={{ color: 'red', background: '#ffeaea', padding: 10, borderRadius: 4 }}>
+            <strong>Error:</strong>
+            <pre style={{ margin: 0 }}>{typeof error === 'string' ? error : JSON.stringify(error, null, 2)}</pre>
+          </div>
+        ) : response ? (
+          <div style={{ background: '#f4f4f4', padding: 10, borderRadius: 4 }}>
+            <strong>Response:</strong>
+            <div>{response.response}</div>
+            {response.function_call && (
+              <div style={{ marginTop: 8 }}>
+                <strong>Function Call:</strong>
+                <pre style={{ margin: 0 }}>{JSON.stringify(response.function_call, null, 2)}</pre>
+              </div>
+            )}
+          </div>
+        ) : null}
       </div>
     </div>
   );

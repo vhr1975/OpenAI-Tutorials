@@ -60,4 +60,31 @@ This project is designed to:
 - Engage with the developer community for feedback and improvement
 - Showcase at developer events and online platforms
 
+## Backend Unit Testing
+
+Unit tests are provided for backend modules to ensure reliability and developer confidence.
+
+**Test Coverage:**
+- FastAPI endpoints (e.g., `/health`)
+- OpenAI client wrapper
+- Utility functions (logging)
+
+**How to Run Tests:**
+1. Activate your Python environment and install dependencies:
+	```sh
+	pip install -r backend/requirements.txt
+	pip install pytest
+	```
+2. From the `function-calling-demo` directory, run:
+	```sh
+	PYTHONPATH=backend pytest backend/tests
+	```
+3. All tests in `backend/tests/` will be discovered and executed.
+
+**How to Extend:**
+- Add new test files in `backend/tests/` for additional modules or features.
+- Use `pytest` and `unittest.mock` for mocking APIs and dependencies.
+
+Unit testing is essential for production readiness and developer enablement. Contributions and new tests are welcome!
+
 ---

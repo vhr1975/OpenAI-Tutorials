@@ -26,9 +26,12 @@ from utils import log_request, log_response, log_error
 from fastapi.middleware.cors import CORSMiddleware
 import json
 
+
 app = FastAPI()
 
 # Enable CORS for frontend integration
+# This allows the React frontend to communicate with the backend during development.
+# In production, update allow_origins to match your deployed frontend domain.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],  # Frontend dev server
@@ -134,7 +137,7 @@ from fastapi import Body
     }
 )
 async def chat_endpoint(request: ChatRequest = Body(..., example={"message": "What's the weather in Paris?", "user_id": "user123"})):
-    # Log the incoming request for debugging
+    # Log the incoming request for debugging and monitoring
     log_request(request)
     try:
         # 1. Send the user's message and available functions to OpenAI
@@ -157,6 +160,8 @@ async def chat_endpoint(request: ChatRequest = Body(..., example={"message": "Wh
                 except Exception:
                     args = {}
             # 4. Look up the Python function in our registry
+            # To add new functions, simply define them in the functions/ directory
+            # and register them in FUNCTIONS (see functions/__init__.py)
             func = FUNCTIONS.get(func_name)
             if func:
                 # 5. Call the function with the provided arguments

@@ -1,4 +1,5 @@
 # Logging, error handling, helpers
+# Logging is essential for debugging, monitoring, and production reliability.
 import logging
 
 logging.basicConfig(level=logging.INFO)

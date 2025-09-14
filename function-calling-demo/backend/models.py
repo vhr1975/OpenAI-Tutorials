@@ -1,4 +1,5 @@
 # Pydantic models for requests/responses
+# Pydantic models provide validation, serialization, and automatic API documentation.
 from pydantic import BaseModel
 from typing import Optional, Dict
 

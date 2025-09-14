@@ -1,4 +1,9 @@
+fastapi
+uvicorn
 openai
-faiss-cpu
+chromadb
 PyPDF2
 langchain
+pydantic
+pytest
+httpx

@@ -1,9 +1,5 @@
 ## Developer Flow & Architecture
 
-![Developer Flow & Architecture](../assets/mermaid-flow-architecture.png)
-
-## Developer Flow & Architecture
-
 ```mermaid
 flowchart TD
 	A[User/Developer] -->|Sends request| B[React Frontend]

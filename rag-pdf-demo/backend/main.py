@@ -1,3 +1,32 @@
+# --- PDF Upload and Query Endpoints ---
+import os
+from fastapi import UploadFile, File, Body
+from fastapi.responses import JSONResponse
+
+DATA_DIR = 'data'
+os.makedirs(DATA_DIR, exist_ok=True)
+
+# Store ingested PDFs and their embeddings in memory (for demo)
+pdf_store = {}
+
+@app.post("/upload")
+async def upload_pdf(file: UploadFile = File(...)):
+    file_path = os.path.join(DATA_DIR, file.filename)
+    with open(file_path, 'wb') as f:
+        f.write(await file.read())
+    # For demo: mark as uploaded, not yet ingested
+    pdf_store[file.filename] = {"path": file_path, "ingested": False, "embeddings": None}
+    return {"file_id": file.filename, "status": "uploaded"}
+
+@app.post("/query")
+async def query_pdf(file_id: str = Body(...), question: str = Body(...)):
+    # For demo: check if file is uploaded
+    pdf_info = pdf_store.get(file_id)
+    if not pdf_info:
+        return JSONResponse(status_code=404, content={"error": "File not found. Please upload first."})
+    # For demo: fake answer (replace with real RAG logic)
+    answer = f"Pretend answer for '{question}' from '{file_id}'."
+    return {"answer": answer}
 
 """
 main.py: FastAPI backend for RAG PDF demo.

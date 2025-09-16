@@ -20,7 +20,18 @@ pdf_store = {}
 CHROMA_COLLECTION_NAME = "pdf_chunks"
 
 # Initialize FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI(title="RAG PDF Demo API")
+
+# Allow all origins for development; restrict in production
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 class QueryRequest(BaseModel):

@@ -5,6 +5,8 @@ function App() {
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [pdfFile, setPdfFile] = useState(null);
+  const [uploadStatus, setUploadStatus] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,9 +31,59 @@ function App() {
     }
   };
 
+  const handlePdfChange = (e) => {
+    setPdfFile(e.target.files[0]);
+    setUploadStatus("");
+  };
+
+  const handlePdfUpload = async (e) => {
+    e.preventDefault();
+    if (!pdfFile) return;
+    setUploadStatus("Uploading...");
+    setError("");
+    try {
+      const formData = new FormData();
+      formData.append("file", pdfFile);
+      const response = await fetch("http://localhost:8000/upload", {
+        method: "POST",
+        body: formData,
+      });
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      const data = await response.json();
+      setUploadStatus(`Success! PDF '${data.file_id}' uploaded.`);
+      setPdfFile(null);
+      // Reset file input visually
+      document.getElementById("pdf-upload").value = "";
+      setTimeout(() => setUploadStatus(""), 3000);
+    } catch (err) {
+      setError(err.message);
+      setUploadStatus("");
+    }
+  };
+
   return (
     <div style={{ maxWidth: 600, margin: "40px auto", padding: 24 }}>
       <h1>OpenAI RAG PDF Demo</h1>
+
+      {/* PDF Upload Section */}
+      <form onSubmit={handlePdfUpload} style={{ marginBottom: 24 }}>
+        <label htmlFor="pdf-upload">Upload a PDF:</label>
+        <input
+          id="pdf-upload"
+          type="file"
+          accept="application/pdf"
+          onChange={handlePdfChange}
+          style={{ marginLeft: 8 }}
+        />
+        <button type="submit" disabled={!pdfFile} style={{ marginLeft: 8 }}>
+          Upload
+        </button>
+        {uploadStatus && <span style={{ marginLeft: 12 }}>{uploadStatus}</span>}
+      </form>
+
+      {/* Question Section */}
       <form onSubmit={handleSubmit}>
         <label htmlFor="question">Ask a question about the PDFs:</label>
         <input

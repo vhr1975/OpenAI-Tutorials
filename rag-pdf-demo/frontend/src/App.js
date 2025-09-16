@@ -19,13 +19,17 @@ function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question }),
       });
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-      }
       const data = await response.json();
-      setAnswer(data.answer);
+      if (!response.ok) {
+        setError(data.error || `Error: ${response.status}`);
+        setAnswer("");
+      } else if (data.answer) {
+        setAnswer(data.answer);
+      } else {
+        setError("No answer returned.");
+      }
     } catch (err) {
-      setError(err.message);
+      setError("Network error: " + err.message);
     } finally {
       setLoading(false);
     }
@@ -97,6 +101,8 @@ function App() {
         <button type="submit" disabled={loading || !question}>
           {loading ? "Loading..." : "Submit"}
         </button>
+        {uploadStatus && <span style={{ marginLeft: 12, color: 'green' }}>{uploadStatus}</span>}
+        {error && <div style={{ color: 'red', marginTop: 8 }}>{error}</div>}
       </form>
       {answer && (
         <div style={{ marginTop: 24, background: "#f6f8fa", padding: 16, borderRadius: 8 }}>

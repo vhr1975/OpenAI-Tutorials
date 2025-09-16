@@ -1,3 +1,30 @@
+"""
+main.py: FastAPI backend for RAG PDF Demo
+
+This file implements the core API for the Retrieval-Augmented Generation (RAG) PDF demo project.
+
+Features:
+- PDF upload endpoint: saves PDFs to local storage
+- Query endpoint: answers questions using RAG pipeline (ChromaDB + Azure OpenAI)
+- Health endpoint: basic service status
+- CORS middleware for frontend-backend integration
+
+Key Classes:
+- RAGQA: Handles retrieval and LLM answering
+
+Usage:
+1. Start the backend server:
+    $ uvicorn main:app --reload
+2. Upload PDFs via the frontend or API
+3. Run offline ingestion (see ingest.py) to process new PDFs
+4. Query processed documents via the frontend or API
+
+Environment:
+- Requires Azure OpenAI credentials in .env
+- Requires ChromaDB and other dependencies (see requirements.txt)
+
+For more details, see README.md and onboarding docs.
+"""
 import os
 from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import JSONResponse

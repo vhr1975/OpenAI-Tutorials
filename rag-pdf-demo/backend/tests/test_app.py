@@ -1,5 +1,5 @@
 def test_ragqa_stub():
-    from backend.app import RAGQA
+    from backend.main import RAGQA
     ragqa = RAGQA()
     assert hasattr(ragqa, 'retrieve')
     assert hasattr(ragqa, 'answer')

@@ -1,8 +1,30 @@
+## Ingestion Process
+
+The ingestion of PDFs is an offline, decoupled process. This means uploaded PDFs are stored, and you must run the ingestion script separately to process new documents and make them available for querying.
+
+### What Ingestion Does
+- Splits PDFs into text chunks
+- Generates embeddings for each chunk using OpenAI
+- Stores chunks and embeddings in ChromaDB for retrieval
+
+### How to Run Ingestion
+1. Place your PDF(s) in the `backend/data/` folder (upload via UI or manually).
+2. Activate your Python environment:
+	```sh
+	source openai-env/bin/activate
+	```
+3. Run the ingestion script:
+	```sh
+	python backend/ingest.py
+	```
+4. The script will process all PDFs in `data/`, chunk them, embed them, and store results in ChromaDB.
+
+After ingestion, you can query the processed documents using the web UI.
 
 # RAG PDF Demo
 
 ## Overview
-This project demonstrates Retrieval-Augmented Generation (RAG) on PDFs using OpenAI, FastAPI, ChromaDB, and React. It is designed to showcase advanced developer experience, best practices, and full-stack AI integration for the OpenAI Developer Experience Engineer role.
+This project demonstrates Retrieval-Augmented Generation (RAG) on PDFs using OpenAI, FastAPI, ChromaDB, and React. It is designed to showcase advanced developer experience, best practices, and full-stack AI integration.
 
 ## Why This Project?
 - **Full-stack AI Integration:** Combines FastAPI backend, React frontend, and OpenAI APIs for a seamless developer workflow.
@@ -85,4 +107,4 @@ flowchart TD
 For questions, feedback, or collaboration, open an issue or reach out via GitHub.
 
 ---
-This project is designed to showcase the skills and developer experience expected of an OpenAI Developer Experience Engineer. It demonstrates full-stack AI integration, robust error handling, and a developer-friendly workflow.
+This project demonstrates full-stack AI integration, robust error handling, and a developer-friendly workflow.

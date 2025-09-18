@@ -22,6 +22,20 @@ The ingestion of PDFs is an offline, decoupled process. This means uploaded PDFs
 After ingestion, you can query the processed documents using the web UI.
 
 # RAG PDF Demo
+## Architecture
+```mermaid
+flowchart TD
+	 User[User/Developer] -->|Uploads PDF| Frontend[React Frontend]
+	 Frontend -->|POST /upload| Backend[FastAPI Backend]
+	 Backend -->|Save PDF| Data[Local Storage]
+	 Backend -->|Trigger ingestion| ChromaDB[ChromaDB]
+	 Frontend -->|Ask question| Backend
+	 Backend -->|Query ChromaDB| ChromaDB
+	 Backend -->|Call OpenAI| OpenAI[AzureOpenAI]
+	 OpenAI -->|LLM Answer| Backend
+	 Backend -->|Return answer| Frontend
+	 Frontend -->|Display answer| User
+```
 
 ## Overview
 This project demonstrates Retrieval-Augmented Generation (RAG) on PDFs using OpenAI, FastAPI, ChromaDB, and React. It is designed to showcase advanced developer experience, best practices, and full-stack AI integration.
@@ -41,21 +55,6 @@ This project demonstrates Retrieval-Augmented Generation (RAG) on PDFs using Ope
 - Error handling and user feedback
 - Technical documentation and onboarding
 - Developer enablement and best practices
-
-## Architecture
-```mermaid
-flowchart TD
-	 User[User/Developer] -->|Uploads PDF| Frontend[React Frontend]
-	 Frontend -->|POST /upload| Backend[FastAPI Backend]
-	 Backend -->|Save PDF| Data[Local Storage]
-	 Backend -->|Trigger ingestion| ChromaDB[ChromaDB]
-	 Frontend -->|Ask question| Backend
-	 Backend -->|Query ChromaDB| ChromaDB
-	 Backend -->|Call OpenAI| OpenAI[AzureOpenAI]
-	 OpenAI -->|LLM Answer| Backend
-	 Backend -->|Return answer| Frontend
-	 Frontend -->|Display answer| User
-```
 
 ## Getting Started
 

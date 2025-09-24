@@ -37,8 +37,9 @@ openai_client = AzureOpenAI(
 
 app = FastAPI(title="RAG Vision Demo API")
 
+
 # Directory for storing uploaded images
-UPLOAD_DIR = "uploads"
+UPLOAD_DIR = os.path.join(os.path.dirname(__file__), "uploads")
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 # In-memory image tracker (demo only)

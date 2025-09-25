@@ -1,11 +1,23 @@
-// App.js: React frontend stub for RAG Vision Demo
-import React from "react";
+import logo from './logo.svg';
+import './App.css';
 
 function App() {
   return (
-    <div style={{ padding: 32 }}>
-      <h1>RAG Vision Demo</h1>
-      <p>This is a stub for the frontend. Integrate with the backend API for vision Q&A.</p>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }

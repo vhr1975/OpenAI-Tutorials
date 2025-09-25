@@ -1,3 +1,22 @@
+# Node/React
+node_modules/
+build/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python
+__pycache__/
+.venv/
+*.pyc
+.env
+
+# VSCode
+.vscode/
+
+# MacOS
+.DS_Store
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

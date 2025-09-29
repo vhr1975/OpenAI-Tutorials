@@ -112,4 +112,4 @@ Each project should include:
 * **Demo link** (if deployed).
 * **Screenshots or short GIF/video** of the app in action.
 
-Also review the /Users/victor/Github/OpenAI-Tutorials/.github/openai-dev-ex.md for the openai dev roole requirements 
+Also review the for the openai dev role requirements 

@@ -111,5 +111,3 @@ Each project should include:
   * Example API requests/responses
 * **Demo link** (if deployed).
 * **Screenshots or short GIF/video** of the app in action.
-
-Also review the for the openai dev role requirements 
